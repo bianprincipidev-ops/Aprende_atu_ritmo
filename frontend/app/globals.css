@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
+/* =========================================
+   1. VARIABLES DE COLOR Y ESTILOS BASE
+   ========================================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #1E3A8A;   /* Azul Profundo (Confianza) */
+  --color-accent: #F97316;    /* Naranja Coral (Acción) */
+  --color-bg: #F8FAFC;        /* Fondo general suave */
+  --color-surface: #FFFFFF;   /* Blanco para tarjetas/paneles */
+  --color-text-main: #1E293B; /* Gris oscuro para textos legibles */
+  --color-text-muted: #64748B;/* Gris claro para descripciones */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+/* =========================================
+   2. COMPONENTES VISUALES (Clases Limpias)
+   ========================================= */
+@layer components {
+  
+  /* --- HEADER Y NAVEGACIÓN --- */
+  .header-container {
+    @apply w-full bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50;
+  }
+  .header-content {
+    @apply max-w-7xl mx-auto px-4 py-4 flex justify-between items-center;
+  }
+  .header-logo {
+    @apply text-2xl font-extrabold text-[#1E3A8A] tracking-tight;
+  }
+  .header-nav {
+    @apply hidden md:flex space-x-8 font-semibold text-slate-600;
+  }
+  .header-link {
+    @apply hover:text-[#F97316] transition-colors duration-200;
+  }
+
+  /* --- ESTRUCTURA PRINCIPAL (Catálogo) --- */
+  .catalog-layout {
+    @apply max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-8;
+  }
+
+  /* --- SIDEBAR (Filtros y Subcategorías) --- */
+  .sidebar {
+    @apply w-full md:w-64 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 h-fit sticky top-24;
+  }
+  .sidebar-title {
+    @apply font-bold text-lg mb-4 text-[#1E3A8A] border-b border-slate-100 pb-3 uppercase tracking-wider text-sm;
+  }
+  .sidebar-menu {
+    @apply flex flex-col space-y-2;
+  }
+  .sidebar-item {
+    @apply text-slate-600 hover:text-[#F97316] hover:bg-orange-50 px-4 py-2.5 rounded-lg transition-all cursor-pointer font-medium text-sm;
+  }
+  .sidebar-item-active {
+    @apply text-[#F97316] bg-orange-50 font-bold px-4 py-2.5 rounded-lg;
+  }
+
+  /* --- GRID DE CURSOS --- */
+  .course-grid {
+    @apply flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  /* --- TARJETAS DE CURSO --- */
+  .course-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1;
+  }
+  .course-card-img-placeholder {
+    @apply w-full h-48 bg-slate-200 object-cover;
+  }
+  .course-card-content {
+    @apply p-6 flex flex-col flex-1;
+  }
+  .course-badge {
+    @apply inline-block bg-blue-50 text-[#1E3A8A] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 w-fit;
+  }
+  .course-title {
+    @apply text-xl font-bold text-[#1E293B] mb-2 leading-tight;
+  }
+  .course-desc {
+    @apply text-sm text-[#64748B] mb-6 line-clamp-3;
+  }
+  .course-footer {
+    @apply mt-auto flex justify-between items-center pt-5 border-t border-slate-50;
+  }
+  .course-price {
+    @apply text-2xl font-extrabold text-[#1E3A8A];
+  }
+
+  /* --- BOTONES --- */
+  .btn-primary {
+    @apply bg-[#F97316] hover:bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-95 text-center cursor-pointer;
+  }
+  .btn-secondary {
+    @apply bg-[#1E3A8A] hover:bg-blue-900 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md active:scale-95 text-center cursor-pointer;
+  }
+  .btn-outline {
+    @apply border-2 border-[#1E3A8A] text-[#1E3A8A] hover:bg-blue-50 font-bold py-2.5 px-6 rounded-xl transition-all active:scale-95 text-center cursor-pointer;
+  }
 }
